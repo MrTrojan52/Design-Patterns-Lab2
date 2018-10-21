@@ -42,4 +42,4 @@ private:
 };
 
 
-#endif
+#endif //LAB1_2_AMATRIX_H

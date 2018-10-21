@@ -3,3 +3,8 @@
 //
 
 #include "headers/MatrixNormal.h"
+
+
+IVector* MatrixNormal::createVector(long size) const {
+    return new VectorNormal(size);
+}

@@ -9,6 +9,7 @@
 #include "IVector.h"
 #include <vector>
 #include "VectorNormal.h"
+#include <QDebug>
 class AMatrix: public IMatrix {
 public:
     AMatrix(long rows, long cols, AMatrix* matrix) {
@@ -18,7 +19,7 @@ public:
         delete matrix;
 
     }
-    virtual ~AMatrix(){
+    virtual ~AMatrix() override{
         for(long i = 0; i < data.size(); ++i) {
             delete data[i];
         }

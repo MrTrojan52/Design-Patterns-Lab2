@@ -14,9 +14,7 @@ public:
 
 protected:
     MatrixSparse() = default;
-    IVector* createVector(long size) const override {
-        return new VectorSparse(size);
-    }
+    IVector* createVector(long size) const override;
 };
 
 

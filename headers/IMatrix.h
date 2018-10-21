@@ -10,5 +10,6 @@ public:
     virtual unsigned long getCols() const = 0;
     virtual int get(int, int) const = 0;
     virtual void set(int, int, int) = 0;
+    virtual ~IMatrix() = default;
 };
 #endif //LAB1_2_IMATRIX_H

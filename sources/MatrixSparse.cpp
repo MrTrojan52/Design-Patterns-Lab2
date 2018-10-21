@@ -3,3 +3,7 @@
 //
 
 #include "headers/MatrixSparse.h"
+
+IVector* MatrixSparse::createVector(long size) const {
+    return new VectorSparse(size);
+}

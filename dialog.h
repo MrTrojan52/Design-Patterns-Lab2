@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "qpaintwidget.h"
+#include "headers/IMatrix.h"
 namespace Ui {
 class Dialog;
 }
@@ -18,6 +19,7 @@ public slots:
     void matrixSizeChanged();
 private:
     Ui::Dialog *ui;
+    IMatrix *_matrix;
 };
 
 #endif // DIALOG_H

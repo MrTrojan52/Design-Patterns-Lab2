@@ -10,7 +10,7 @@
 
 class MatrixSparse: public AMatrix {
 public:
-    MatrixSparse(int rows, int cols) : AMatrix(rows, cols, new MatrixSparse()) {}
+    MatrixSparse(int rows, int cols, IDrawer *d) : AMatrix(rows, cols, new MatrixSparse(), d) {}
 
 protected:
     MatrixSparse() = default;

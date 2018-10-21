@@ -9,7 +9,7 @@
 #include "VectorNormal.h"
 class MatrixNormal: public AMatrix {
 public:
-    MatrixNormal(int rows, int cols) : AMatrix(rows, cols, new MatrixNormal()) {}
+    MatrixNormal(int rows, int cols, IDrawer* d) : AMatrix(rows, cols, new MatrixNormal(), d) {}
 
 protected:
     MatrixNormal() = default;

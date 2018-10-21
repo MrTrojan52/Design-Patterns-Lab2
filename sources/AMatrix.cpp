@@ -22,3 +22,18 @@ void AMatrix::set(int row, int col, int val) {
     this->data[row]->set(col, val);
 }
 
+void AMatrix::Draw() const {
+
+}
+
+void AMatrix::setDrawer(IDrawer *d) {
+    this->drawer = d;
+}
+
+void AMatrix::DrawBorder(unsigned long rows, unsigned long cols) const {
+    this->drawer->DrawBorder(rows, cols);
+}
+
+void AMatrix::DrawItem(unsigned long row, unsigned long col, int val) const {
+    this->drawer->DrawItem(row, col, val);
+}

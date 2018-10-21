@@ -49,7 +49,9 @@ HEADERS += \
     headers/MatrixSparse.h \
     headers/MatrixStatistics.h \
     headers/VectorNormal.h \
-    headers/VectorSparse.h
+    headers/VectorSparse.h \
+    headers/idrawer.h \
+    headers/idrawable.h
 
 FORMS += \
         dialog.ui

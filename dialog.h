@@ -14,7 +14,8 @@ class Dialog : public QDialog
 public:
     explicit Dialog(QWidget *parent = nullptr);
     ~Dialog();
-
+public slots:
+    void matrixSizeChanged();
 private:
     Ui::Dialog *ui;
 };

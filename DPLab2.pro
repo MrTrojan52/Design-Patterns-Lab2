@@ -29,11 +29,27 @@ CONFIG += \
 SOURCES += \
         main.cpp \
         dialog.cpp \
-    qpaintwidget.cpp
+    qpaintwidget.cpp \
+    sources/AMatrix.cpp \
+    sources/MatrixInitiator.cpp \
+    sources/MatrixNormal.cpp \
+    sources/MatrixSparse.cpp \
+    sources/MatrixStatistics.cpp \
+    sources/VectorNormal.cpp \
+    sources/VectorSparse.cpp
 
 HEADERS += \
         dialog.h \
-    qpaintwidget.h
+    qpaintwidget.h \
+    headers/AMatrix.h \
+    headers/IMatrix.h \
+    headers/IVector.h \
+    headers/MatrixInitiator.h \
+    headers/MatrixNormal.h \
+    headers/MatrixSparse.h \
+    headers/MatrixStatistics.h \
+    headers/VectorNormal.h \
+    headers/VectorSparse.h
 
 FORMS += \
         dialog.ui

@@ -11,16 +11,12 @@
 
 class VectorNormal: public IVector {
 public:
-    explicit VectorNormal(long size) {
-        if(size >= 0 )
+    explicit VectorNormal(unsigned long size) {
             this->data.resize(size);
-        else
-            throw std::invalid_argument("Size must be >= 0");
-
     }
     unsigned long getSize() const override;
-    int get(int pos) const override;
-    void set(int pos, int val) override;
+    int get(unsigned long pos) const override;
+    void set(unsigned long pos, int val) override;
 private:
     std::vector<int> data;
 };

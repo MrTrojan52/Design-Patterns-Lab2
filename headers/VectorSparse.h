@@ -11,18 +11,14 @@
 
 class VectorSparse: public IVector {
 public:
-    explicit VectorSparse(long size) {
-        if(size >= 0 )
-            this->_size = size;
-        else
-            throw std::invalid_argument("Size must be >= 0");
-
+    explicit VectorSparse(unsigned long size) {
+        this->_size = size;
     }
     unsigned long getSize() const override;
-    int get(int pos) const override;
-    void set(int pos, int val) override;
+    int get(unsigned long pos) const override;
+    void set(unsigned long pos, int val) override;
 private:
-    std::unordered_map<int, int> data;
+    std::unordered_map<unsigned long, int> data;
     unsigned long _size;
 };
 

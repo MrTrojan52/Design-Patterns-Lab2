@@ -8,10 +8,10 @@ MatrixStatistics::MatrixStatistics(IMatrix *const matrix):_matrix(matrix) { }
 
 long MatrixStatistics::sum() const {
     long sum = 0;
-    long rows = this->_matrix->getRows();
-    long cols = this->_matrix->getCols();
-    for(long i = 0; i < rows; ++i) {
-        for (long j = 0; j < cols; ++j) {
+    unsigned long rows = this->_matrix->getRows();
+    unsigned long cols = this->_matrix->getCols();
+    for(unsigned long i = 0; i < rows; ++i) {
+        for (unsigned long j = 0; j < cols; ++j) {
             sum += this->_matrix->get(i, j);
         }
     }
@@ -21,10 +21,10 @@ long MatrixStatistics::sum() const {
 
 long MatrixStatistics::notZeroCount() const {
     long count = 0;
-    long rows = this->_matrix->getRows();
-    long cols = this->_matrix->getCols();
-    for(long i = 0; i < rows; ++i) {
-        for (long j = 0; j < cols; ++j) {
+    unsigned long  rows = this->_matrix->getRows();
+    unsigned long  cols = this->_matrix->getCols();
+    for(unsigned long i = 0; i < rows; ++i) {
+        for (unsigned long j = 0; j < cols; ++j) {
             if(this->_matrix->get(i, j)) ++count;
         }
     }
@@ -33,10 +33,10 @@ long MatrixStatistics::notZeroCount() const {
 
 int MatrixStatistics::maxValue() const {
     int max = std::numeric_limits<int>::min();
-    long rows = this->_matrix->getRows();
-    long cols = this->_matrix->getCols();
-    for(long i = 0; i < rows; ++i) {
-        for (long j = 0; j < cols; ++j) {
+    unsigned long rows = this->_matrix->getRows();
+    unsigned long cols = this->_matrix->getCols();
+    for(unsigned long i = 0; i < rows; ++i) {
+        for (unsigned long j = 0; j < cols; ++j) {
             int item = this->_matrix->get(i, j);
             max = item > max ? item : max;
         }

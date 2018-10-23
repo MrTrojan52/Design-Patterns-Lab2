@@ -8,8 +8,8 @@
 class IVector {
 public:
     virtual unsigned long getSize() const = 0;
-    virtual int get(int) const = 0;
-    virtual void set(int, int) = 0;
+    virtual int get(unsigned long) const = 0;
+    virtual void set(unsigned long, int) = 0;
     virtual ~IVector() = default;
 };
 

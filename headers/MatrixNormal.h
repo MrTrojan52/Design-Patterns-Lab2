@@ -9,11 +9,11 @@
 #include "VectorNormal.h"
 class MatrixNormal: public AMatrix {
 public:
-    MatrixNormal(int rows, int cols, IDrawer* d) : AMatrix(rows, cols, new MatrixNormal(), d) {}
-
+    MatrixNormal(unsigned long rows, unsigned long cols, IDrawer* d) : AMatrix(rows, cols, new MatrixNormal(), d) {}
+    void Draw() const override;
 protected:
     MatrixNormal() = default;
-    IVector* createVector(long size) const override;
+    IVector* createVector(unsigned long size) const override;
 
 };
 

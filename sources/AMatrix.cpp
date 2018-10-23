@@ -14,16 +14,12 @@ unsigned long AMatrix::getCols() const {
     return this->data[0]->getSize();
 }
 
-int AMatrix::get(int row, int col) const {
+int AMatrix::get(unsigned long row, unsigned long col) const {
     return this->data[row]->get(col);
 }
 
-void AMatrix::set(int row, int col, int val) {
+void AMatrix::set(unsigned long row, unsigned long col, int val) {
     this->data[row]->set(col, val);
-}
-
-void AMatrix::Draw() const {
-
 }
 
 void AMatrix::setDrawer(IDrawer *d) {

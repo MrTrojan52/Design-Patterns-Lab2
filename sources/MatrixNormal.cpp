@@ -5,6 +5,17 @@
 #include "headers/MatrixNormal.h"
 
 
-IVector* MatrixNormal::createVector(long size) const {
+IVector* MatrixNormal::createVector(unsigned long size) const {
     return new VectorNormal(size);
+}
+
+void MatrixNormal::Draw() const {
+    unsigned long rows = this->getRows();
+    unsigned long cols = this->getCols();
+    DrawBorder(rows, cols);
+    for(unsigned long r = 0; r < rows; ++r) {
+        for(unsigned long c = 0; c < cols; ++c) {
+            DrawItem(r, c, this->get(r, c));
+        }
+    }
 }

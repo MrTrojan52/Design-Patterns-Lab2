@@ -6,11 +6,11 @@
 #include <ctime>
 #include <numeric>
 #include <vector>
-void MatrixInitiator::fillMatrix(AMatrix * const matrix, long nonZeroCount, long maxValue) {
+void MatrixInitiator::fillMatrix(IMatrix * const matrix, unsigned long nonZeroCount, int maxValue) {
     srand(time(nullptr));
     unsigned long rows = matrix->getRows();
     unsigned long cols = matrix->getCols();
-    long count = 0;
+    unsigned long  count = 0;
     std::vector<int> indices(rows * cols);
     std::iota(indices.begin(), indices.end(), 0);
     while (count != nonZeroCount && count < rows*cols)

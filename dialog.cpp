@@ -1,6 +1,10 @@
 #include "dialog.h"
 #include "ui_dialog.h"
 #include "headers/MatrixNormal.h"
+#include "headers/MatrixSparse.h"
+#include "headers/consoledrawer.h"
+#include "headers/MatrixInitiator.h"
+
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog)
@@ -23,4 +27,29 @@ Dialog::~Dialog()
 
 void Dialog::matrixSizeChanged() {
     ui->spnNonZero->setMaximum(ui->spnCols->value() * ui->spnRows->value());
+}
+
+void Dialog::on_psbNormal_clicked()
+{
+   if(this->_matrix)
+       delete this->_matrix;
+   ConsoleDrawer cd;
+   this->_matrix = new MatrixNormal(ui->spnRows->value(), ui->spnCols->value(), &cd);
+   MatrixInitiator::fillMatrix(this->_matrix, ui->spnNonZero->value(), ui->spnMax->value());
+   this->_matrix->Draw();
+}
+
+void Dialog::on_psbSparse_clicked()
+{
+    if(this->_matrix)
+        delete this->_matrix;
+    ConsoleDrawer cd;
+    this->_matrix = new MatrixSparse(ui->spnRows->value(), ui->spnCols->value(), &cd);
+    MatrixInitiator::fillMatrix(this->_matrix, ui->spnNonZero->value(), ui->spnMax->value());
+    this->_matrix->Draw();
+}
+
+void Dialog::on_chkBorder_toggled(bool checked)
+{
+    Q_UNUSED(checked);
 }

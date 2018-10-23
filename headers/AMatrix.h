@@ -12,27 +12,26 @@
 #include "idrawer.h"
 class AMatrix: public IMatrix {
 public:
-    AMatrix(long rows, long cols, AMatrix* matrix, IDrawer *d) {
+    AMatrix(unsigned long rows, unsigned long cols, AMatrix* matrix, IDrawer *d) {
         this->data.resize(rows);
-        for(long i = 0; i < rows; ++i)
+        for(unsigned long i = 0; i < rows; ++i)
             this->data[i] = matrix->createVector(cols);
         delete matrix;
         this->drawer = d;
     }
     virtual ~AMatrix() override{
-        for(long i = 0; i < data.size(); ++i) {
+        for(unsigned long i = 0; i < data.size(); ++i) {
             delete data[i];
         }
     }
     unsigned long getRows() const override ;
     unsigned long getCols() const override;
-    int get(int row, int col) const override;
-    void set(int row, int col, int val) override;
-    void Draw() const override;
+    int get(unsigned long row, unsigned long col) const override;
+    void set(unsigned long row, unsigned long col, int val) override;
     void setDrawer(IDrawer *d);
 protected:
     AMatrix() = default;
-    virtual IVector* createVector(long size) const = 0;
+    virtual IVector* createVector(unsigned long size) const = 0;
     virtual void DrawBorder(unsigned long rows, unsigned long cols) const;
     virtual void DrawItem(unsigned long row, unsigned long col, int val) const;
 

@@ -36,7 +36,8 @@ SOURCES += \
     sources/MatrixSparse.cpp \
     sources/MatrixStatistics.cpp \
     sources/VectorNormal.cpp \
-    sources/VectorSparse.cpp
+    sources/VectorSparse.cpp \
+    sources/consoledrawer.cpp
 
 HEADERS += \
         dialog.h \
@@ -51,7 +52,8 @@ HEADERS += \
     headers/VectorNormal.h \
     headers/VectorSparse.h \
     headers/idrawer.h \
-    headers/idrawable.h
+    headers/idrawable.h \
+    headers/consoledrawer.h
 
 FORMS += \
         dialog.ui

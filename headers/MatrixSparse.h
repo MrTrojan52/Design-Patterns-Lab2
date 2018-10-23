@@ -10,11 +10,11 @@
 
 class MatrixSparse: public AMatrix {
 public:
-    MatrixSparse(int rows, int cols, IDrawer *d) : AMatrix(rows, cols, new MatrixSparse(), d) {}
-
+    MatrixSparse(unsigned long rows, unsigned long cols, IDrawer *d) : AMatrix(rows, cols, new MatrixSparse(), d) {}
+    void Draw() const override;
 protected:
     MatrixSparse() = default;
-    IVector* createVector(long size) const override;
+    IVector* createVector(unsigned long size) const override;
 };
 
 

@@ -17,6 +17,13 @@ public:
     ~Dialog();
 public slots:
     void matrixSizeChanged();
+private slots:
+    void on_psbNormal_clicked();
+
+    void on_psbSparse_clicked();
+
+    void on_chkBorder_toggled(bool checked);
+
 private:
     Ui::Dialog *ui;
     IMatrix *_matrix;

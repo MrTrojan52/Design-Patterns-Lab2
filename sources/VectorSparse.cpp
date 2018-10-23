@@ -9,8 +9,8 @@ unsigned long VectorSparse::getSize() const {
     return this->_size;
 }
 
-int VectorSparse::get(int pos) const {
-    if(pos < 0 || pos > this->_size - 1)
+int VectorSparse::get(unsigned long pos) const {
+    if(pos > this->_size - 1)
         throw std::out_of_range("VectorSparse::get pos out of range");
     if(this->data.find(pos) != this->data.end())
         return this->data.at(pos);
@@ -18,8 +18,8 @@ int VectorSparse::get(int pos) const {
         return 0;
 }
 
-void VectorSparse::set(int pos, int val) {
-    if(pos < 0 || pos > this->_size - 1)
+void VectorSparse::set(unsigned long pos, int val) {
+    if(pos > this->_size - 1)
         throw std::out_of_range("VectorSparse::set pos out of range");
     if(val) {
         this->data[pos] = val;

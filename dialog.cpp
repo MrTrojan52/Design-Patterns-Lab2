@@ -31,6 +31,7 @@ void Dialog::matrixSizeChanged() {
 
 void Dialog::on_psbNormal_clicked()
 {
+   system("clear");
    if(this->_matrix)
        delete this->_matrix;
    ConsoleDrawer cd;
@@ -41,6 +42,7 @@ void Dialog::on_psbNormal_clicked()
 
 void Dialog::on_psbSparse_clicked()
 {
+    system("clear");
     if(this->_matrix)
         delete this->_matrix;
     ConsoleDrawer cd;

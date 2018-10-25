@@ -25,6 +25,9 @@ void ConsoleDrawer::DrawBorder(unsigned long rows, unsigned long cols) {
             cout << endl;
         }
         cout << row << endl;
+    } else {
+        std::string down_offset = "\033[" + std::to_string(rows * 2 + 1) + 'E';
+        cout << down_offset;
     }
 }
 

@@ -4,7 +4,6 @@
 #include "headers/MatrixSparse.h"
 #include "headers/consoledrawer.h"
 #include "headers/MatrixInitiator.h"
-#include <QScrollArea>
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog)

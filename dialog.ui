@@ -118,12 +118,39 @@
        <property name="text">
         <string>ГЕНЕРАЦИЯ ОБЫЧНОЙ МАТРИЦЫ</string>
        </property>
+       <property name="autoDefault">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="psbSparse">
        <property name="text">
         <string>ГЕНЕРАЦИЯ РАЗРЕЖЕННОЙ МАТРИЦЫ</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QPushButton" name="psbRenum">
+       <property name="text">
+        <string>ПЕРЕНУМЕРОВАТЬ</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="psbRestore">
+       <property name="text">
+        <string>ВОССТАНОВИТЬ</string>
        </property>
       </widget>
      </item>

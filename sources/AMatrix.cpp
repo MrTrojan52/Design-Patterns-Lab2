@@ -33,3 +33,8 @@ void AMatrix::DrawBorder(unsigned long rows, unsigned long cols) const {
 void AMatrix::DrawItem(unsigned long row, unsigned long col, int val) const {
     this->drawer->DrawItem(row, col, val);
 }
+
+
+IMatrix* AMatrix::getComponent() {
+    return this;
+}

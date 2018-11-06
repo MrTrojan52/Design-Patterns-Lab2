@@ -28,6 +28,7 @@ public:
     unsigned long getCols() const override;
     int get(unsigned long row, unsigned long col) const override;
     void set(unsigned long row, unsigned long col, int val) override;
+    IMatrix* getComponent() override;
     void setDrawer(IDrawer *d);
 protected:
     AMatrix() = default;

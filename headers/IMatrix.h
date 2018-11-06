@@ -12,6 +12,7 @@ public:
     virtual unsigned long getCols() const = 0;
     virtual int get(unsigned long, unsigned long) const = 0;
     virtual void set(unsigned long, unsigned long, int) = 0;
+    virtual IMatrix* getComponent() = 0;
     virtual ~IMatrix() = default;
 };
 #endif //LAB1_2_IMATRIX_H

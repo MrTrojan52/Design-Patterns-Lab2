@@ -8,7 +8,7 @@ IVector* MatrixSparse::createVector(unsigned long size) const {
     return new VectorSparse(size);
 }
 
-void MatrixSparse::Draw() const {
+void MatrixSparse::Draw() {
     unsigned long rows = this->getRows();
     unsigned long cols = this->getCols();
     DrawBorder(rows, cols);

@@ -26,10 +26,14 @@ private slots:
 
     void on_chkBorder_toggled(bool checked);
 
+    void on_psbRenum_clicked();
+
+    void on_psbRestore_clicked();
+
 private:
     bool eventFilter(QObject* watched, QEvent* event);
     Ui::Dialog *ui;
-    AMatrix *_matrix;
+    IMatrix *_matrix;
     ConsoleDrawer* _cDrawer;
     GuiDrawer* _gDrawer;
 };

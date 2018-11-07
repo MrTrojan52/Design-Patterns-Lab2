@@ -29,7 +29,7 @@ public:
     int get(unsigned long row, unsigned long col) const override;
     void set(unsigned long row, unsigned long col, int val) override;
     IMatrix* getComponent() override;
-    void setDrawer(IDrawer *d);
+    void setDrawer(IDrawer *d) override;
 protected:
     AMatrix() = default;
     virtual IVector* createVector(unsigned long size) const = 0;

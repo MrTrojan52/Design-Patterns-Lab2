@@ -11,7 +11,7 @@
 class MatrixSparse: public AMatrix {
 public:
     MatrixSparse(unsigned long rows, unsigned long cols, IDrawer *d) : AMatrix(rows, cols, new MatrixSparse(), d) {}
-    void Draw() const override;
+    void Draw() override;
 protected:
     MatrixSparse() = default;
     IVector* createVector(unsigned long size) const override;

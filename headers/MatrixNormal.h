@@ -10,7 +10,7 @@
 class MatrixNormal: public AMatrix {
 public:
     MatrixNormal(unsigned long rows, unsigned long cols, IDrawer* d) : AMatrix(rows, cols, new MatrixNormal(), d) {}
-    void Draw() const override;
+    void Draw() override;
 protected:
     MatrixNormal() = default;
     IVector* createVector(unsigned long size) const override;

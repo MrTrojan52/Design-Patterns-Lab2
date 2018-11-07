@@ -4,6 +4,7 @@
 #include "headers/MatrixSparse.h"
 #include "headers/consoledrawer.h"
 #include "headers/MatrixInitiator.h"
+#include "headers/renumdecorator.h"
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog)
@@ -50,9 +51,10 @@ void Dialog::matrixSizeChanged() {
 
 void Dialog::on_psbNormal_clicked()
 {
-   system("clear");
-   if(this->_matrix)
-       delete this->_matrix;
+    if(this->_matrix) {
+        system("clear");
+        delete this->_matrix;
+    }
    this->_cDrawer->needBorder(ui->chkBorder->isChecked());
    this->_matrix = new MatrixNormal(ui->spnRows->value(), ui->spnCols->value(), this->_cDrawer);
    MatrixInitiator::fillMatrix(this->_matrix, ui->spnNonZero->value(), ui->spnMax->value());
@@ -63,9 +65,11 @@ void Dialog::on_psbNormal_clicked()
 
 void Dialog::on_psbSparse_clicked()
 {
-    system("clear");
-    if(this->_matrix)
+
+    if(this->_matrix) {
+        system("clear");
         delete this->_matrix;
+    }
     this->_cDrawer->needBorder(ui->chkBorder->isChecked());
     this->_matrix = new MatrixSparse(ui->spnRows->value(), ui->spnCols->value(), this->_cDrawer);
     MatrixInitiator::fillMatrix(this->_matrix, ui->spnNonZero->value(), ui->spnMax->value());
@@ -76,12 +80,39 @@ void Dialog::on_psbSparse_clicked()
 
 void Dialog::on_chkBorder_toggled(bool checked)
 {
-    system("clear");
+
     this->_cDrawer->needBorder(checked);
     if(this->_matrix) {
+        system("clear");
         this->_matrix->setDrawer(this->_cDrawer);
         this->_matrix->Draw();
     }
     this->_gDrawer->needBorder(ui->chkBorder->isChecked());
     ui->widget->update();
+}
+
+void Dialog::on_psbRenum_clicked()
+{
+    if(this->_matrix) {
+        system("clear");
+        RenumDecorator* rd = new RenumDecorator(this->_matrix, this->_cDrawer);
+        rd->swapCols(0, 2);
+        this->_matrix = rd;
+        this->_cDrawer->needBorder(ui->chkBorder->isChecked());
+        this->_matrix->Draw();
+        this->_gDrawer->needBorder(ui->chkBorder->isChecked());
+        ui->widget->update();
+    }
+
+}
+
+void Dialog::on_psbRestore_clicked()
+{
+    if(this->_matrix) {
+        system("clear");
+        this->_matrix = this->_matrix->getComponent();
+        this->_matrix->setDrawer(this->_cDrawer);
+        this->_matrix->Draw();
+        ui->widget->update();
+    }
 }

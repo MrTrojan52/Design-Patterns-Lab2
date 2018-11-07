@@ -9,7 +9,7 @@ IVector* MatrixNormal::createVector(unsigned long size) const {
     return new VectorNormal(size);
 }
 
-void MatrixNormal::Draw() const {
+void MatrixNormal::Draw() {
     unsigned long rows = this->getRows();
     unsigned long cols = this->getCols();
     DrawBorder(rows, cols);

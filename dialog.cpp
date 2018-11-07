@@ -94,9 +94,23 @@ void Dialog::on_chkBorder_toggled(bool checked)
 void Dialog::on_psbRenum_clicked()
 {
     if(this->_matrix) {
+        srand(static_cast<unsigned int>(time(nullptr)));
+        int swap1, swap2;
         system("clear");
         RenumDecorator* rd = new RenumDecorator(this->_matrix, this->_cDrawer);
-        rd->swapCols(0, 2);
+
+        swap1 = rand() % rd->getRows();
+        swap2 = swap1;
+        while(swap2 == swap1)
+            swap2 = rand() % rd->getRows();
+        rd->swapRows(swap1, swap2);
+
+        swap1 = rand() % rd->getCols();
+        swap2 = swap1;
+        while(swap2 == swap1)
+            swap2 = rand() % rd->getCols();
+        rd->swapCols(swap1, swap2);
+
         this->_matrix = rd;
         this->_cDrawer->needBorder(ui->chkBorder->isChecked());
         this->_matrix->Draw();

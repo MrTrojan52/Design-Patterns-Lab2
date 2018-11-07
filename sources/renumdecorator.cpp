@@ -10,21 +10,13 @@ unsigned long RenumDecorator::getCols() const {
 }
 
 int RenumDecorator::get(unsigned long row, unsigned long col) const {
-    if(row == swapRow1) row = swapRow2;
-    else if(row == swapRow2) row = swapRow1;
-
-    if(col == swapCol1) col = swapCol2;
-    else if(col == swapCol2) col = swapCol1;
+    std::tie(row, col) = this->getSwapped(row, col);
 
     return this->_matrix->get(row, col);
 }
 
 void RenumDecorator::set(unsigned long row, unsigned long col, int val) {
-    if(row == swapRow1) row = swapRow2;
-    else if(row == swapRow2) row = swapRow1;
-
-    if(col == swapCol1) col = swapCol2;
-    else if(col == swapCol2) col = swapCol1;
+    std::tie(row, col) = this->getSwapped(row, col);
 
     this->_matrix->set(row, col, val);
 }
@@ -48,6 +40,15 @@ void RenumDecorator::swapRows(int r1, int r2) {
     }
 }
 
+std::tuple<int, int> RenumDecorator::getSwapped(int row, int col) const {
+    if(row == this->swapRow1) row = this->swapRow2;
+    else if(row == this->swapRow2) row = this->swapRow1;
+
+    if(col == this->swapCol1) col = this->swapCol2;
+    else if(col == this->swapCol2) col = this->swapCol1;
+    return std::make_tuple(row, col);
+}
+
 void RenumDecorator::setDrawer(IDrawer* d) {
     this->_mdrawer = d;
 }
@@ -57,11 +58,7 @@ void RenumDecorator::DrawBorder(unsigned long rows, unsigned long cols) {
 }
 
 void RenumDecorator::DrawItem(unsigned long row, unsigned long col, int val) const {
-    if(row == swapRow1) row = swapRow2;
-    else if(row == swapRow2) row = swapRow1;
-
-    if(col == swapCol1) col = swapCol2;
-    else if(col == swapCol2) col = swapCol1;
+    std::tie(row, col) = this->getSwapped(row, col);
 
     this->_mdrawer->DrawItem(row, col, val);
 }
@@ -70,5 +67,4 @@ void RenumDecorator::Draw() {
     this->_matrix->setDrawer(this);
     this->_matrix->Draw();
 }
-
 

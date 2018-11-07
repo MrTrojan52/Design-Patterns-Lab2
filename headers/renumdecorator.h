@@ -1,7 +1,7 @@
 #ifndef RENUMDECORATOR_H
 #define RENUMDECORATOR_H
 #include "IMatrix.h"
-
+#include <tuple>
 class RenumDecorator : public IMatrix, public IDrawer{
 public:
     RenumDecorator(IMatrix * m, IDrawer * d) {
@@ -21,7 +21,8 @@ public:
 protected:
     void DrawBorder(unsigned long rows, unsigned long cols) override;
     void DrawItem(unsigned long row, unsigned long col, int val) const override;
-private:
+private:    
+    std::tuple<int,int> getSwapped(int row, int col) const;
     //TODO: Эта хуйня придумана укропами ( переделать под shared_ptr)
     IMatrix * _matrix;
     IDrawer * _mdrawer;

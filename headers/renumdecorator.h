@@ -22,6 +22,7 @@ protected:
     void DrawBorder(unsigned long rows, unsigned long cols) override;
     void DrawItem(unsigned long row, unsigned long col, int val) const override;
 private:
+    //TODO: Эта хуйня придумана укропами ( переделать под shared_ptr)
     IMatrix * _matrix;
     IDrawer * _mdrawer;
     int swapCol1 = -1;

@@ -57,11 +57,16 @@ void RenumDecorator::DrawBorder(unsigned long rows, unsigned long cols) {
 }
 
 void RenumDecorator::DrawItem(unsigned long row, unsigned long col, int val) const {
+    if(row == swapRow1) row = swapRow2;
+    else if(row == swapRow2) row = swapRow1;
+
+    if(col == swapCol1) col = swapCol2;
+    else if(col == swapCol2) col = swapCol1;
+
     this->_mdrawer->DrawItem(row, col, val);
 }
 
 void RenumDecorator::Draw() {
-    //TODO: Разобраться с отрисовкой item'ов
     this->_matrix->setDrawer(this);
     this->_matrix->Draw();
 }

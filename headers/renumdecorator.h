@@ -2,9 +2,10 @@
 #define RENUMDECORATOR_H
 #include "IMatrix.h"
 #include <tuple>
+#include <memory>
 class RenumDecorator : public IMatrix, public IDrawer{
 public:
-    RenumDecorator(IMatrix * m, IDrawer * d) {
+    RenumDecorator(std::shared_ptr<IMatrix>& m, IDrawer * d) {
         this->_matrix = m;
         this->_mdrawer = d;
 
@@ -13,7 +14,7 @@ public:
     unsigned long getCols() const override;
     int get(unsigned long row, unsigned long col) const override;
     void set(unsigned long row, unsigned long col, int val) override;
-    IMatrix* getComponent() override;
+    std::shared_ptr<IMatrix> getComponent() override;
     void Draw() override;
     void setDrawer(IDrawer* d) override;
     void swapCols(int c1, int c2);
@@ -23,8 +24,7 @@ protected:
     void DrawItem(unsigned long row, unsigned long col, int val) const override;
 private:    
     std::tuple<int,int> getSwapped(int row, int col) const;
-    //TODO: Эта хуйня придумана укропами ( переделать под shared_ptr)
-    IMatrix * _matrix;
+    std::shared_ptr<IMatrix> _matrix;
     IDrawer * _mdrawer;
     int swapCol1 = -1;
     int swapCol2 = -1;

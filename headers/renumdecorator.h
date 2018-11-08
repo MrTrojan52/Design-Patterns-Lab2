@@ -23,7 +23,6 @@ protected:
     void DrawItem(unsigned long row, unsigned long col, int val) const override;
 private:    
     std::tuple<int,int> getSwapped(int row, int col) const;
-    //TODO: Эта хуйня придумана укропами ( переделать под shared_ptr)
     IMatrix * _matrix;
     IDrawer * _mdrawer;
     int swapCol1 = -1;

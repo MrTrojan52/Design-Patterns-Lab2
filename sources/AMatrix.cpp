@@ -35,6 +35,6 @@ void AMatrix::DrawItem(unsigned long row, unsigned long col, int val) const {
 }
 
 
-IMatrix* AMatrix::getComponent() {
-    return this;
+std::shared_ptr<IMatrix> AMatrix::getComponent() {
+    return shared_from_this();
 }

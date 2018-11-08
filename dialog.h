@@ -6,6 +6,7 @@
 #include "headers/AMatrix.h"
 #include "headers/consoledrawer.h"
 #include "headers/guidrawer.h"
+#include "memory"
 namespace Ui {
 class Dialog;
 }
@@ -33,7 +34,7 @@ private slots:
 private:
     bool eventFilter(QObject* watched, QEvent* event);
     Ui::Dialog *ui;
-    IMatrix *_matrix;
+    std::shared_ptr<IMatrix> _matrix;
     ConsoleDrawer* _cDrawer;
     GuiDrawer* _gDrawer;
 };

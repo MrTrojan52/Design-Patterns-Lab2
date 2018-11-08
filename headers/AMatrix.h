@@ -10,7 +10,7 @@
 #include <vector>
 #include "VectorNormal.h"
 #include "idrawer.h"
-class AMatrix: public IMatrix {
+class AMatrix: public IMatrix, public std::enable_shared_from_this<AMatrix> {
 public:
     AMatrix(unsigned long rows, unsigned long cols, AMatrix* matrix, IDrawer *d) {
         this->data.resize(rows);
@@ -28,7 +28,7 @@ public:
     unsigned long getCols() const override;
     int get(unsigned long row, unsigned long col) const override;
     void set(unsigned long row, unsigned long col, int val) override;
-    IMatrix* getComponent() override;
+    std::shared_ptr<IMatrix> getComponent() override;
     void setDrawer(IDrawer *d) override;
 protected:
     AMatrix() = default;

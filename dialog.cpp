@@ -23,7 +23,7 @@ Dialog::Dialog(QWidget *parent) :
 
 Dialog::~Dialog()
 {
-    delete _matrix;
+    //delete _matrix;
     delete _cDrawer;
     delete _gDrawer;
     delete ui;
@@ -53,11 +53,12 @@ void Dialog::on_psbNormal_clicked()
 {
     if(this->_matrix) {
         system("clear");
-        delete this->_matrix;
+       // delete this->_matrix;
     }
    this->_cDrawer->needBorder(ui->chkBorder->isChecked());
-   this->_matrix = new MatrixNormal(ui->spnRows->value(), ui->spnCols->value(), this->_cDrawer);
-   MatrixInitiator::fillMatrix(this->_matrix, ui->spnNonZero->value(), ui->spnMax->value());
+   std::shared_ptr<IMatrix> m(new MatrixNormal(ui->spnRows->value(), ui->spnCols->value(), this->_cDrawer));
+   this->_matrix = m;
+   MatrixInitiator::fillMatrix(this->_matrix.get(), ui->spnNonZero->value(), ui->spnMax->value());
    this->_matrix->Draw();
    this->_gDrawer->needBorder(ui->chkBorder->isChecked());
    ui->widget->update();
@@ -68,11 +69,12 @@ void Dialog::on_psbSparse_clicked()
 
     if(this->_matrix) {
         system("clear");
-        delete this->_matrix;
+        //delete this->_matrix;
     }
     this->_cDrawer->needBorder(ui->chkBorder->isChecked());
-    this->_matrix = new MatrixSparse(ui->spnRows->value(), ui->spnCols->value(), this->_cDrawer);
-    MatrixInitiator::fillMatrix(this->_matrix, ui->spnNonZero->value(), ui->spnMax->value());
+    std::shared_ptr<IMatrix> m(new MatrixSparse(ui->spnRows->value(), ui->spnCols->value(), this->_cDrawer));
+    this->_matrix = m;
+    MatrixInitiator::fillMatrix(this->_matrix.get(), ui->spnNonZero->value(), ui->spnMax->value());
     this->_matrix->Draw();
     this->_gDrawer->needBorder(ui->chkBorder->isChecked());
     ui->widget->update();
@@ -95,21 +97,27 @@ void Dialog::on_psbRenum_clicked()
 {
     if(this->_matrix) {
         srand(static_cast<unsigned int>(time(nullptr)));
-        int swap1, swap2;
+        int swap1 = -1, swap2 = -1;
         system("clear");
-        RenumDecorator* rd = new RenumDecorator(this->_matrix, this->_cDrawer);
+        std::shared_ptr<RenumDecorator> rd(new RenumDecorator(this->_matrix, this->_cDrawer));
+        //RenumDecorator* rd = new RenumDecorator(this->_matrix, this->_cDrawer);
+        if(rd->getRows() != 1) {
+            swap1 = rand() % rd->getRows();
+            swap2 = swap1;
+            while(swap2 == swap1)
+                swap2 = rand() % rd->getRows();
+            rd->swapRows(swap1, swap2);
+        }
 
-        swap1 = rand() % rd->getRows();
-        swap2 = swap1;
-        while(swap2 == swap1)
-            swap2 = rand() % rd->getRows();
-        rd->swapRows(swap1, swap2);
 
-        swap1 = rand() % rd->getCols();
-        swap2 = swap1;
-        while(swap2 == swap1)
-            swap2 = rand() % rd->getCols();
-        rd->swapCols(swap1, swap2);
+        if(rd->getCols() != 1) {
+            swap1 = rand() % rd->getCols();
+            swap2 = swap1;
+            while(swap2 == swap1)
+                swap2 = rand() % rd->getCols();
+            rd->swapCols(swap1, swap2);
+        }
+
 
         this->_matrix = rd;
         this->_cDrawer->needBorder(ui->chkBorder->isChecked());

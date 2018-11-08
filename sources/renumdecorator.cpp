@@ -21,20 +21,20 @@ void RenumDecorator::set(unsigned long row, unsigned long col, int val) {
     this->_matrix->set(row, col, val);
 }
 
-IMatrix* RenumDecorator::getComponent() {
+std::shared_ptr<IMatrix> RenumDecorator::getComponent() {
     return this->_matrix->getComponent();
 }
 
 
 void RenumDecorator::swapCols(int c1, int c2) {
-    if(c1 >= 0 && c1 < getCols() && c2 >= 0 && c2 < getCols() && c1 != c2) {
+    if(c1 >= 0 && c1 < getCols() && c2 >= 0 && c2 < getCols() && c1 != c2 && this->_matrix->getCols() != 1) {
         this->swapCol1 = c1;
         this->swapCol2 = c2;
     }
 }
 
 void RenumDecorator::swapRows(int r1, int r2) {
-    if(r1 >= 0 && r1 < getRows() && r2 >= 0 && r2 < getRows() && r1 != r2) {
+    if(r1 >= 0 && r1 < getRows() && r2 >= 0 && r2 < getRows() && r1 != r2 && this->_matrix->getRows() != 1) {
         this->swapRow1 = r1;
         this->swapRow2 = r2;
     }

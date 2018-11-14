@@ -38,7 +38,10 @@ SOURCES += \
     sources/VectorNormal.cpp \
     sources/VectorSparse.cpp \
     sources/consoledrawer.cpp \
-    sources/guidrawer.cpp
+    sources/guidrawer.cpp \
+    sources/renumdecorator.cpp \
+    sources/vectornormalfactory.cpp \
+    sources/vectorsparsefactory.cpp
 
 HEADERS += \
         dialog.h \
@@ -56,7 +59,12 @@ HEADERS += \
     headers/idrawable.h \
     headers/consoledrawer.h \
     headers/guidrawer.h \
-    headers/adrawer.h
+    headers/adrawer.h \
+    headers/renumdecorator.h \
+    headers/iiterable.h \
+    headers/ivectorfactory.h \
+    headers/vectornormalfactory.h \
+    headers/vectorsparsefactory.h
 
 FORMS += \
         dialog.ui

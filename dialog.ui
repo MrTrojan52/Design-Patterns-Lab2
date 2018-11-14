@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>562</width>
-    <height>425</height>
+    <width>606</width>
+    <height>450</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -124,6 +124,24 @@
       <widget class="QPushButton" name="psbSparse">
        <property name="text">
         <string>ГЕНЕРАЦИЯ РАЗРЕЖЕННОЙ МАТРИЦЫ</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QPushButton" name="psbRenum">
+       <property name="text">
+        <string>ПЕРЕНУМЕРОВАТЬ</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="psbRestore">
+       <property name="text">
+        <string>ВОССТАНОВИТЬ</string>
        </property>
       </widget>
      </item>

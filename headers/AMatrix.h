@@ -9,14 +9,17 @@
 #include "IVector.h"
 #include <vector>
 #include "VectorNormal.h"
+#include "idrawable.h"
 #include "idrawer.h"
-class AMatrix: public IMatrix {
+#include "ivectorfactory.h"
+#include <memory>
+class AMatrix: public IMatrix, public IDrawable, public std::enable_shared_from_this<AMatrix> {
 public:
-    AMatrix(unsigned long rows, unsigned long cols, AMatrix* matrix, IDrawer *d) {
+    AMatrix(unsigned long rows, unsigned long cols, IVectorFactory* vecFactory, IDrawer *d) {
         this->data.resize(rows);
         for(unsigned long i = 0; i < rows; ++i)
-            this->data[i] = matrix->createVector(cols);
-        delete matrix;
+            this->data[i] = vecFactory->createVector(cols);
+        delete vecFactory;
         this->drawer = d;
     }
     virtual ~AMatrix() override{
@@ -28,10 +31,10 @@ public:
     unsigned long getCols() const override;
     int get(unsigned long row, unsigned long col) const override;
     void set(unsigned long row, unsigned long col, int val) override;
-    void setDrawer(IDrawer *d);
+    virtual std::shared_ptr<AMatrix> getComponent();
+    virtual void setDrawer(IDrawer *d);
 protected:
     AMatrix() = default;
-    virtual IVector* createVector(unsigned long size) const = 0;
     virtual void DrawBorder(unsigned long rows, unsigned long cols) const;
     virtual void DrawItem(unsigned long row, unsigned long col, int val) const;
 

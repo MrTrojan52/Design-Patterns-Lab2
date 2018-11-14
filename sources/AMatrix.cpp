@@ -33,3 +33,9 @@ void AMatrix::DrawBorder(unsigned long rows, unsigned long cols) const {
 void AMatrix::DrawItem(unsigned long row, unsigned long col, int val) const {
     this->drawer->DrawItem(row, col, val);
 }
+
+std::shared_ptr<AMatrix> AMatrix::getComponent() {
+    return shared_from_this();
+}
+
+

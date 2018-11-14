@@ -6,6 +6,7 @@
 #include "headers/AMatrix.h"
 #include "headers/consoledrawer.h"
 #include "headers/guidrawer.h"
+#include "headers/renumdecorator.h"
 namespace Ui {
 class Dialog;
 }
@@ -26,10 +27,14 @@ private slots:
 
     void on_chkBorder_toggled(bool checked);
 
+    void on_psbRenum_clicked();
+
+    void on_psbRestore_clicked();
+
 private:
     bool eventFilter(QObject* watched, QEvent* event);
     Ui::Dialog *ui;
-    AMatrix *_matrix;
+    std::shared_ptr<AMatrix> _matrix;
     ConsoleDrawer* _cDrawer;
     GuiDrawer* _gDrawer;
 };

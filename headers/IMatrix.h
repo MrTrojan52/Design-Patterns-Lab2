@@ -4,9 +4,9 @@
 
 #ifndef LAB1_2_IMATRIX_H
 #define LAB1_2_IMATRIX_H
-#include "idrawable.h"
+#include "iiterable.h"
 
-class IMatrix:public IDrawable {
+class IMatrix: public IIterable {
 public:
     virtual unsigned long getRows() const = 0;
     virtual unsigned long getCols() const = 0;

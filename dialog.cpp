@@ -22,7 +22,6 @@ Dialog::Dialog(QWidget *parent) :
 
 Dialog::~Dialog()
 {
-    delete _matrix;
     delete _cDrawer;
     delete _gDrawer;
     delete ui;
@@ -50,12 +49,13 @@ void Dialog::matrixSizeChanged() {
 
 void Dialog::on_psbNormal_clicked()
 {
-   system("clear");
-   if(this->_matrix)
-       delete this->_matrix;
+   if(this->_matrix) {
+       system("clear");       
+   }
    this->_cDrawer->needBorder(ui->chkBorder->isChecked());
-   this->_matrix = new MatrixNormal(ui->spnRows->value(), ui->spnCols->value(), this->_cDrawer);
-   MatrixInitiator::fillMatrix(this->_matrix, ui->spnNonZero->value(), ui->spnMax->value());
+   std::shared_ptr<AMatrix> m(new MatrixNormal(ui->spnRows->value(), ui->spnCols->value(), this->_cDrawer));
+   this->_matrix = m;
+   MatrixInitiator::fillMatrix(this->_matrix.get(), ui->spnNonZero->value(), ui->spnMax->value());
    this->_matrix->Draw();
    this->_gDrawer->needBorder(ui->chkBorder->isChecked());
    ui->widget->update();
@@ -63,12 +63,13 @@ void Dialog::on_psbNormal_clicked()
 
 void Dialog::on_psbSparse_clicked()
 {
-    system("clear");
-    if(this->_matrix)
-        delete this->_matrix;
+    if(this->_matrix) {
+        system("clear");
+    }
     this->_cDrawer->needBorder(ui->chkBorder->isChecked());
-    this->_matrix = new MatrixSparse(ui->spnRows->value(), ui->spnCols->value(), this->_cDrawer);
-    MatrixInitiator::fillMatrix(this->_matrix, ui->spnNonZero->value(), ui->spnMax->value());
+    std::shared_ptr<AMatrix> m(new MatrixSparse(ui->spnRows->value(), ui->spnCols->value(), this->_cDrawer));
+    this->_matrix = m;
+    MatrixInitiator::fillMatrix(this->_matrix.get(), ui->spnNonZero->value(), ui->spnMax->value());
     this->_matrix->Draw();
     this->_gDrawer->needBorder(ui->chkBorder->isChecked());
     ui->widget->update();
@@ -76,12 +77,59 @@ void Dialog::on_psbSparse_clicked()
 
 void Dialog::on_chkBorder_toggled(bool checked)
 {
-    system("clear");
+
     this->_cDrawer->needBorder(checked);
     if(this->_matrix) {
+        system("clear");
         this->_matrix->setDrawer(this->_cDrawer);
         this->_matrix->Draw();
     }
     this->_gDrawer->needBorder(ui->chkBorder->isChecked());
     ui->widget->update();
+}
+
+void Dialog::on_psbRenum_clicked()
+{
+    if(this->_matrix) {
+        srand(static_cast<unsigned int>(time(nullptr)));
+        int swap1 = -1, swap2 = -1;
+        system("clear");
+        std::shared_ptr<RenumDecorator> rd(new RenumDecorator(this->_matrix));
+        //RenumDecorator* rd = new RenumDecorator(this->_matrix);
+
+        if(rd->getRows() != 1) {
+            swap1 = rand() % rd->getRows();
+            swap2 = swap1;
+            while(swap2 == swap1)
+                swap2 = rand() % rd->getRows();
+            rd->swapRows(swap1, swap2);
+        }
+
+        if(rd->getCols() != 1) {
+            swap1 = rand() % rd->getCols();
+            swap2 = swap1;
+            while(swap2 == swap1)
+                swap2 = rand() % rd->getCols();
+            rd->swapCols(swap1, swap2);
+        }
+
+
+        this->_matrix = rd;
+        rd->setDrawer(_cDrawer);
+        this->_cDrawer->needBorder(ui->chkBorder->isChecked());
+        this->_matrix->Draw();
+        this->_gDrawer->needBorder(ui->chkBorder->isChecked());
+        ui->widget->update();
+    }
+}
+
+void Dialog::on_psbRestore_clicked()
+{
+    if(this->_matrix) {
+        system("clear");
+        this->_matrix = this->_matrix->getComponent();
+        this->_matrix->setDrawer(this->_cDrawer);
+        this->_matrix->Draw();
+        ui->widget->update();
+    }
 }

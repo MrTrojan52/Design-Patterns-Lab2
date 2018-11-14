@@ -7,14 +7,12 @@
 
 #include "AMatrix.h"
 #include "VectorSparse.h"
-
+#include "vectorsparsefactory.h"
 class MatrixSparse: public AMatrix {
 public:
-    MatrixSparse(unsigned long rows, unsigned long cols, IDrawer *d) : AMatrix(rows, cols, new MatrixSparse(), d) {}
+    MatrixSparse(unsigned long rows, unsigned long cols, IDrawer *d) : AMatrix(rows, cols, new VectorSparseFactory, d) {}
+    void iterate(std::function<void (int,int,int)>) const override;
     void Draw() const override;
-protected:
-    MatrixSparse() = default;
-    IVector* createVector(unsigned long size) const override;
 };
 
 

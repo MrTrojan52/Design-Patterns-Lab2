@@ -133,3 +133,18 @@ void Dialog::on_psbRestore_clicked()
         ui->widget->update();
     }
 }
+
+void Dialog::on_objMakeGroup_clicked()
+{
+    AMatrix* m1 = new MatrixNormal(3,3,_cDrawer);
+    AMatrix* m2 = new MatrixNormal(3,2,_cDrawer);
+    AMatrix* m3 = new MatrixNormal(2,4,_cDrawer);
+    MatrixInitiator::fillMatrix(m1, ui->spnNonZero->value(), ui->spnMax->value());
+    MatrixInitiator::fillMatrix(m2, ui->spnNonZero->value(), ui->spnMax->value());
+    MatrixInitiator::fillMatrix(m3, ui->spnNonZero->value(), ui->spnMax->value());
+    std::shared_ptr<VerticalMatrixGroup> hmg(new VerticalMatrixGroup({ m1,m2,m3 }));
+    this->_matrix = hmg;
+    this->_matrix->setDrawer(_cDrawer);
+    this->_matrix->Draw();
+    ui->widget->update();
+}

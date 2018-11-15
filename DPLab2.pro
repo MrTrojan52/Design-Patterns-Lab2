@@ -41,7 +41,9 @@ SOURCES += \
     sources/guidrawer.cpp \
     sources/renumdecorator.cpp \
     sources/vectornormalfactory.cpp \
-    sources/vectorsparsefactory.cpp
+    sources/vectorsparsefactory.cpp \
+    sources/horizontalmatrixgroup.cpp \
+    sources/verticalmatrixgroup.cpp
 
 HEADERS += \
         dialog.h \
@@ -64,7 +66,9 @@ HEADERS += \
     headers/iiterable.h \
     headers/ivectorfactory.h \
     headers/vectornormalfactory.h \
-    headers/vectorsparsefactory.h
+    headers/vectorsparsefactory.h \
+    headers/horizontalmatrixgroup.h \
+    headers/verticalmatrixgroup.h
 
 FORMS += \
         dialog.ui

@@ -7,6 +7,8 @@
 #include "headers/consoledrawer.h"
 #include "headers/guidrawer.h"
 #include "headers/renumdecorator.h"
+#include "headers/horizontalmatrixgroup.h"
+#include "headers/verticalmatrixgroup.h"
 namespace Ui {
 class Dialog;
 }
@@ -30,6 +32,8 @@ private slots:
     void on_psbRenum_clicked();
 
     void on_psbRestore_clicked();
+
+    void on_objMakeGroup_clicked();
 
 private:
     bool eventFilter(QObject* watched, QEvent* event);

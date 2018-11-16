@@ -147,6 +147,8 @@ void Dialog::on_objMakeGroup_clicked()
 
                                                           });
     this->_matrix->setDrawer(_cDrawer);
+    this->_cDrawer->needBorder(ui->chkBorder->isChecked());
     this->_matrix->Draw();
+    this->_gDrawer->needBorder(ui->chkBorder->isChecked());
     ui->widget->update();
 }

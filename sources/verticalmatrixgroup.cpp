@@ -3,11 +3,11 @@
 #include <algorithm>
 #include <numeric>
 unsigned long VerticalMatrixGroup::getCols() const {
-    return const_cast<AMatrix*>(*(std::max_element(_mVec.begin(), _mVec.end(), [](AMatrix* m1, AMatrix* m2)->bool {return m1->getCols() < m2->getCols();})))->getCols();
+    return (*(std::max_element(_mVec.begin(), _mVec.end(), [](const std::shared_ptr<AMatrix> m1, const std::shared_ptr<AMatrix> m2)->bool {return m1->getCols() < m2->getCols();})))->getCols();
 }
 
 unsigned long VerticalMatrixGroup::getRows() const {
-    return std::accumulate(_mVec.begin(),_mVec.end(), 0, [](int& m1, AMatrix* m2)->int {return m1 + m2->getRows();});
+    return std::accumulate(_mVec.begin(),_mVec.end(), 0, [](int& m1, const std::shared_ptr<AMatrix> m2)->int {return m1 + m2->getRows();});
 }
 
 int VerticalMatrixGroup::get(unsigned long row, unsigned long col) const {
@@ -39,15 +39,11 @@ void VerticalMatrixGroup::set(unsigned long row, unsigned long col, int val) {
         offset += _mVec[i]->getRows();
     }
 }
-void VerticalMatrixGroup::setDrawer(IDrawer *d) {
-    AMatrix::setDrawer(d);
-    for(AMatrix* x : _mVec)
-        x->setDrawer(d);
-}
+
 void VerticalMatrixGroup::Draw() const {
     DrawBorder(this->getRows(), this->getCols());
     int offset = 0;
-    for(AMatrix* x : _mVec){
+    for(auto& x : _mVec){
         x->iterate([this, offset](int row, int col, int val)->void {
            DrawItem(row + offset, col, val);
         });
@@ -56,13 +52,21 @@ void VerticalMatrixGroup::Draw() const {
 }
 void VerticalMatrixGroup::iterate(std::function<void (int,int,int)> func) const {
     int offset = 0;
-    for(AMatrix* x : _mVec) {
+    for(auto& x : _mVec) {
         x->iterate([offset, func](int row, int col, int val)->void {
            func(row + offset, col, val);
         });
     offset += x->getRows();
     }
 }
-void VerticalMatrixGroup::Add(AMatrix* matrix) {
+
+void VerticalMatrixGroup::Add(std::shared_ptr<AMatrix> matrix) {
     _mVec.push_back(matrix);
 }
+
+void VerticalMatrixGroup::setDrawer(IDrawer* d) {
+    AMatrix::setDrawer(d);
+    for(auto& x : _mVec)
+        x->setDrawer(d);
+}
+

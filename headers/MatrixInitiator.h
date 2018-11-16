@@ -9,7 +9,7 @@
 
 class MatrixInitiator {
 public:
-    static void fillMatrix(IMatrix* const matrix, unsigned long nonZeroCount, int maxValue);
+    static void fillMatrix(std::shared_ptr<IMatrix> matrix, unsigned long nonZeroCount, int maxValue);
 };
 
 

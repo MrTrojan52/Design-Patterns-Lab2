@@ -17,6 +17,7 @@ Dialog::Dialog(QWidget *parent) :
     this->_cDrawer = new ConsoleDrawer;
     this->_gDrawer = new GuiDrawer;
     this->_matrix = nullptr;
+    matrix_factory = new MatrixFactory;
 }
 
 
@@ -24,6 +25,7 @@ Dialog::~Dialog()
 {
     delete _cDrawer;
     delete _gDrawer;
+    delete matrix_factory;
     delete ui;
 
 }
@@ -53,9 +55,7 @@ void Dialog::on_psbNormal_clicked()
        system("clear");       
    }
    this->_cDrawer->needBorder(ui->chkBorder->isChecked());
-   std::shared_ptr<AMatrix> m(new MatrixNormal(ui->spnRows->value(), ui->spnCols->value(), this->_cDrawer));
-   this->_matrix = m;
-   MatrixInitiator::fillMatrix(this->_matrix.get(), ui->spnNonZero->value(), ui->spnMax->value());
+   this->_matrix = matrix_factory->create_and_fill_normal(ui->spnRows->value(), ui->spnCols->value(), this->_cDrawer, ui->spnNonZero->value(), ui->spnMax->value());
    this->_matrix->Draw();
    this->_gDrawer->needBorder(ui->chkBorder->isChecked());
    ui->widget->update();
@@ -67,9 +67,7 @@ void Dialog::on_psbSparse_clicked()
         system("clear");
     }
     this->_cDrawer->needBorder(ui->chkBorder->isChecked());
-    std::shared_ptr<AMatrix> m(new MatrixSparse(ui->spnRows->value(), ui->spnCols->value(), this->_cDrawer));
-    this->_matrix = m;
-    MatrixInitiator::fillMatrix(this->_matrix.get(), ui->spnNonZero->value(), ui->spnMax->value());
+    this->_matrix = matrix_factory->create_and_fill_sparse(ui->spnRows->value(), ui->spnCols->value(), this->_cDrawer, ui->spnNonZero->value(), ui->spnMax->value());
     this->_matrix->Draw();
     this->_gDrawer->needBorder(ui->chkBorder->isChecked());
     ui->widget->update();
@@ -136,14 +134,18 @@ void Dialog::on_psbRestore_clicked()
 
 void Dialog::on_objMakeGroup_clicked()
 {
-    AMatrix* m1 = new MatrixNormal(3,3,_cDrawer);
-    AMatrix* m2 = new MatrixNormal(3,2,_cDrawer);
-    AMatrix* m3 = new MatrixNormal(2,4,_cDrawer);
-    MatrixInitiator::fillMatrix(m1, ui->spnNonZero->value(), ui->spnMax->value());
-    MatrixInitiator::fillMatrix(m2, ui->spnNonZero->value(), ui->spnMax->value());
-    MatrixInitiator::fillMatrix(m3, ui->spnNonZero->value(), ui->spnMax->value());
-    std::shared_ptr<VerticalMatrixGroup> hmg(new VerticalMatrixGroup({ m1,m2,m3 }));
-    this->_matrix = hmg;
+    this->_matrix = matrix_factory->create_vertical_group({ matrix_factory->create_horizontal_group({
+                                                                matrix_factory->create_and_fill_normal(2,2,_cDrawer, ui->spnNonZero->value(), ui->spnMax->value()),
+                                                                matrix_factory->create_and_fill_normal(4,3,_cDrawer, ui->spnNonZero->value(), ui->spnMax->value()),
+                                                                matrix_factory->create_and_fill_normal(1,3,_cDrawer, ui->spnNonZero->value(), ui->spnMax->value())
+                                                            }),
+                                                                matrix_factory->create_horizontal_group({
+                                                                matrix_factory->create_and_fill_sparse(2,4,_cDrawer, ui->spnNonZero->value(), ui->spnMax->value()),
+                                                                matrix_factory->create_and_fill_sparse(2,3,_cDrawer, ui->spnNonZero->value(), ui->spnMax->value())
+                                                            }),
+                                                            matrix_factory->create_and_fill_normal(1, 1, _cDrawer,ui->spnNonZero->value(), ui->spnMax->value())
+
+                                                          });
     this->_matrix->setDrawer(_cDrawer);
     this->_matrix->Draw();
     ui->widget->update();

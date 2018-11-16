@@ -43,7 +43,8 @@ SOURCES += \
     sources/vectornormalfactory.cpp \
     sources/vectorsparsefactory.cpp \
     sources/horizontalmatrixgroup.cpp \
-    sources/verticalmatrixgroup.cpp
+    sources/verticalmatrixgroup.cpp \
+    sources/factories/MatrixFactory.cpp
 
 HEADERS += \
         dialog.h \
@@ -68,7 +69,9 @@ HEADERS += \
     headers/vectornormalfactory.h \
     headers/vectorsparsefactory.h \
     headers/horizontalmatrixgroup.h \
-    headers/verticalmatrixgroup.h
+    headers/verticalmatrixgroup.h \
+    headers/factories/IAbstractFactory.h \
+    headers/factories/matrixfactory.h
 
 FORMS += \
         dialog.ui

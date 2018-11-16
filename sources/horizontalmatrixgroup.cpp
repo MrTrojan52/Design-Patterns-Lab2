@@ -2,11 +2,11 @@
 #include <algorithm>
 #include <numeric>
 unsigned long HorizontalMatrixGroup::getRows() const {
-    return const_cast<AMatrix*>(*(std::max_element(_mVec.begin(), _mVec.end(), [](AMatrix* m1, AMatrix* m2)->bool {return m1->getRows() < m2->getRows();})))->getRows();
+    return (*(std::max_element(_mVec.begin(), _mVec.end(), [](const std::shared_ptr<AMatrix> m1, const std::shared_ptr<AMatrix> m2)->bool {return m1->getRows() < m2->getRows();})))->getRows();
 }
 
 unsigned long HorizontalMatrixGroup::getCols() const {
-    return std::accumulate(_mVec.begin(),_mVec.end(), 0, [](int& m1, AMatrix* m2)->int {return m1 + m2->getCols();});
+    return std::accumulate(_mVec.begin(),_mVec.end(), 0, [](int& m1, const std::shared_ptr<AMatrix> m2)->int {return m1 + m2->getCols();});
 }
 
 int HorizontalMatrixGroup::get(unsigned long row, unsigned long col) const {
@@ -38,15 +38,11 @@ void HorizontalMatrixGroup::set(unsigned long row, unsigned long col, int val) {
         offset += _mVec[i]->getCols();
     }
 }
-void HorizontalMatrixGroup::setDrawer(IDrawer *d) {
-    AMatrix::setDrawer(d);
-    for(AMatrix* x : _mVec)
-        x->setDrawer(d);
-}
+
 void HorizontalMatrixGroup::Draw() const {
     DrawBorder(this->getRows(), this->getCols());
     int offset = 0;
-    for(AMatrix* x : _mVec){
+    for(auto& x : _mVec){
         x->iterate([this, offset](int row, int col, int val)->void {
            DrawItem(row, col + offset, val);
         });
@@ -55,13 +51,20 @@ void HorizontalMatrixGroup::Draw() const {
 }
 void HorizontalMatrixGroup::iterate(std::function<void (int,int,int)> func) const {
     int offset = 0;
-    for(AMatrix* x : _mVec) {
+    for(auto x : _mVec) {
         x->iterate([offset, func](int row, int col, int val)->void {
            func(row, col + offset, val);
         });
     offset += x->getCols();
     }
 }
-void HorizontalMatrixGroup::Add(AMatrix* matrix) {
+
+void HorizontalMatrixGroup::Add(std::shared_ptr<AMatrix> matrix) {
     _mVec.push_back(matrix);
+}
+
+void HorizontalMatrixGroup::setDrawer(IDrawer* d) {
+    AMatrix::setDrawer(d);
+    for(auto& x : _mVec)
+        x->setDrawer(d);
 }

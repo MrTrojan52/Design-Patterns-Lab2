@@ -6,7 +6,7 @@
 #include <ctime>
 #include <numeric>
 #include <vector>
-void MatrixInitiator::fillMatrix(IMatrix * const matrix, unsigned long nonZeroCount, int maxValue) {
+void MatrixInitiator::fillMatrix(std::shared_ptr<IMatrix> matrix, unsigned long nonZeroCount, int maxValue) {
     srand(time(nullptr));
     unsigned long rows = matrix->getRows();
     unsigned long cols = matrix->getCols();

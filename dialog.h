@@ -9,6 +9,7 @@
 #include "headers/renumdecorator.h"
 #include "headers/horizontalmatrixgroup.h"
 #include "headers/verticalmatrixgroup.h"
+#include "headers/factories/matrixfactory.h"
 namespace Ui {
 class Dialog;
 }
@@ -41,6 +42,7 @@ private:
     std::shared_ptr<AMatrix> _matrix;
     ConsoleDrawer* _cDrawer;
     GuiDrawer* _gDrawer;
+    MatrixFactory* matrix_factory;
 };
 
 #endif // DIALOG_H

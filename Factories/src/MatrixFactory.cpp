@@ -1,9 +1,9 @@
-#include "headers/factories/matrixfactory.h"
-#include "headers/MatrixNormal.h"
-#include "headers/MatrixSparse.h"
-#include "headers/MatrixInitiator.h"
-#include "headers/horizontalmatrixgroup.h"
-#include "headers/verticalmatrixgroup.h"
+#include "Factories/include/matrixfactory.h"
+#include "Matrix/include/MatrixNormal.h"
+#include "Matrix/include/MatrixSparse.h"
+#include "Matrix/include/MatrixInitiator.h"
+#include "Matrix/include/horizontalmatrixgroup.h"
+#include "Matrix/include/verticalmatrixgroup.h"
 std::shared_ptr<AMatrix> MatrixFactory::create_and_fill_normal(unsigned long r, unsigned long c, IDrawer * d, unsigned long nonZeroCount, int maxValue) const {
     std::shared_ptr<MatrixNormal> matrix(new MatrixNormal(r,c,d));
     MatrixInitiator::fillMatrix(matrix, nonZeroCount, maxValue);

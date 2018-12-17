@@ -1,6 +1,6 @@
 #ifndef IDRAWABLE_H
 #define IDRAWABLE_H
-#include "headers/idrawer.h"
+#include "idrawer.h"
 class IDrawable {
 public:
     virtual void Draw() const = 0;

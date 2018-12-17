@@ -6,8 +6,8 @@
 #define LAB1_2_MATRIXNORMAL_H
 
 #include "AMatrix.h"
-#include "VectorNormal.h"
-#include "vectornormalfactory.h"
+#include "Vector/include/VectorNormal.h"
+#include "Factories/include/vectornormalfactory.h"
 class MatrixNormal: public AMatrix {
 public:
     MatrixNormal(unsigned long rows, unsigned long cols, IDrawer* d) : AMatrix(rows, cols, new VectorNormalFactory, d) {}

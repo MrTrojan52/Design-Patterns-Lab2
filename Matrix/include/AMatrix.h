@@ -6,12 +6,12 @@
 #define LAB1_2_AMATRIX_H
 
 #include "IMatrix.h"
-#include "IVector.h"
+#include "Vector/include/IVector.h"
 #include <vector>
-#include "VectorNormal.h"
-#include "idrawable.h"
-#include "idrawer.h"
-#include "ivectorfactory.h"
+#include "Vector/include/VectorNormal.h"
+#include "Drawer/include/idrawable.h"
+#include "Drawer/include/idrawer.h"
+#include "Factories/include/ivectorfactory.h"
 #include <memory>
 class AMatrix: public IMatrix, public IDrawable, public std::enable_shared_from_this<AMatrix> {
 public:

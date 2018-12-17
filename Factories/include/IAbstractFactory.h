@@ -1,10 +1,10 @@
 #ifndef IABSTRACTFACTORY_H
 #define IABSTRACTFACTORY_H
 #include <memory>
-#include "../AMatrix.h"
-#include "../idrawer.h"
-#include "../horizontalmatrixgroup.h"
-#include "../verticalmatrixgroup.h"
+#include "Matrix/include/AMatrix.h"
+#include "Drawer/include/idrawer.h"
+#include "Matrix/include/horizontalmatrixgroup.h"
+#include "Matrix/include/verticalmatrixgroup.h"
 class IAbstractFactory {
 public:
     virtual std::shared_ptr<AMatrix> create_normal(unsigned long r, unsigned long c, IDrawer * d) const = 0;

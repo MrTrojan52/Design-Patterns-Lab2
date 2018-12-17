@@ -1,4 +1,4 @@
-#include "headers/renumdecorator.h"
+#include "Matrix/include/renumdecorator.h"
 
 unsigned long RenumDecorator::getRows() const {
     return this->_matrix->getRows();

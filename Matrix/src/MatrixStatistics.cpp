@@ -2,7 +2,7 @@
 // Created by trojan52 on 10.10.18.
 //
 
-#include "headers/MatrixStatistics.h"
+#include "Matrix/include/MatrixStatistics.h"
 #include <limits>
 MatrixStatistics::MatrixStatistics(IMatrix *const matrix):_matrix(matrix) { }
 

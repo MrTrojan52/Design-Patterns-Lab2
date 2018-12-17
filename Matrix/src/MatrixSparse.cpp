@@ -2,7 +2,7 @@
 // Created by trojan52 on 10.10.18.
 //
 
-#include "headers/MatrixSparse.h"
+#include "Matrix/include/MatrixSparse.h"
 
 void MatrixSparse::Draw() const {
     unsigned long rows = this->getRows();

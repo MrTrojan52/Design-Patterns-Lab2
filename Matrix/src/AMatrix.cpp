@@ -2,7 +2,7 @@
 // Created by trojan52 on 06.10.18.
 //
 
-#include "headers/AMatrix.h"
+#include "Matrix/include/AMatrix.h"
 
 
 unsigned long AMatrix::getRows() const {

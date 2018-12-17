@@ -6,8 +6,8 @@
 #define LAB1_2_MATRIXSPARSE_H
 
 #include "AMatrix.h"
-#include "VectorSparse.h"
-#include "vectorsparsefactory.h"
+#include "Vector/include/VectorSparse.h"
+#include "Factories/include/vectorsparsefactory.h"
 class MatrixSparse: public AMatrix {
 public:
     MatrixSparse(unsigned long rows, unsigned long cols, IDrawer *d) : AMatrix(rows, cols, new VectorSparseFactory, d) {}

@@ -3,13 +3,13 @@
 
 #include <QDialog>
 #include "qpaintwidget.h"
-#include "headers/AMatrix.h"
-#include "headers/consoledrawer.h"
-#include "headers/guidrawer.h"
-#include "headers/renumdecorator.h"
-#include "headers/horizontalmatrixgroup.h"
-#include "headers/verticalmatrixgroup.h"
-#include "headers/factories/matrixfactory.h"
+#include "Matrix/include/AMatrix.h"
+#include "Drawer/include/consoledrawer.h"
+#include "Drawer/include/guidrawer.h"
+#include "Matrix/include/renumdecorator.h"
+#include "Matrix/include/horizontalmatrixgroup.h"
+#include "Matrix/include/verticalmatrixgroup.h"
+#include "Factories/include/matrixfactory.h"
 namespace Ui {
 class Dialog;
 }

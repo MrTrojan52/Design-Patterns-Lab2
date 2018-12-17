@@ -1,4 +1,4 @@
-#include "headers/verticalmatrixgroup.h"
+#include "Matrix/include/verticalmatrixgroup.h"
 
 #include <algorithm>
 #include <numeric>

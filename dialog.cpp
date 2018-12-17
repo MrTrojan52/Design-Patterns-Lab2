@@ -1,9 +1,9 @@
 #include "dialog.h"
 #include "ui_dialog.h"
-#include "headers/MatrixNormal.h"
-#include "headers/MatrixSparse.h"
-#include "headers/consoledrawer.h"
-#include "headers/MatrixInitiator.h"
+#include "Matrix/include/MatrixNormal.h"
+#include "Matrix/include/MatrixSparse.h"
+#include "Drawer/include/consoledrawer.h"
+#include "Matrix/include/MatrixInitiator.h"
 Dialog::Dialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Dialog)

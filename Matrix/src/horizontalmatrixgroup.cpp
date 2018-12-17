@@ -1,4 +1,4 @@
-#include "headers/horizontalmatrixgroup.h"
+#include "Matrix/include/horizontalmatrixgroup.h"
 #include <algorithm>
 #include <numeric>
 unsigned long HorizontalMatrixGroup::getRows() const {

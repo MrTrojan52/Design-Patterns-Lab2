@@ -2,7 +2,7 @@
 // Created by trojan52 on 10.10.18.
 //
 
-#include "headers/MatrixInitiator.h"
+#include "Matrix/include/MatrixInitiator.h"
 #include <ctime>
 #include <numeric>
 #include <vector>

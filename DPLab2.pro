@@ -30,48 +30,48 @@ SOURCES += \
         main.cpp \
         dialog.cpp \
     qpaintwidget.cpp \
-    sources/AMatrix.cpp \
-    sources/MatrixInitiator.cpp \
-    sources/MatrixNormal.cpp \
-    sources/MatrixSparse.cpp \
-    sources/MatrixStatistics.cpp \
-    sources/VectorNormal.cpp \
-    sources/VectorSparse.cpp \
-    sources/consoledrawer.cpp \
-    sources/guidrawer.cpp \
-    sources/renumdecorator.cpp \
-    sources/vectornormalfactory.cpp \
-    sources/vectorsparsefactory.cpp \
-    sources/horizontalmatrixgroup.cpp \
-    sources/verticalmatrixgroup.cpp \
-    sources/factories/MatrixFactory.cpp
+    Drawer/src/consoledrawer.cpp \
+    Drawer/src/guidrawer.cpp \
+    Factories/src/MatrixFactory.cpp \
+    Factories/src/vectornormalfactory.cpp \
+    Factories/src/vectorsparsefactory.cpp \
+    Matrix/src/AMatrix.cpp \
+    Matrix/src/horizontalmatrixgroup.cpp \
+    Matrix/src/MatrixInitiator.cpp \
+    Matrix/src/MatrixNormal.cpp \
+    Matrix/src/MatrixSparse.cpp \
+    Matrix/src/MatrixStatistics.cpp \
+    Matrix/src/renumdecorator.cpp \
+    Matrix/src/verticalmatrixgroup.cpp \
+    Vector/src/VectorNormal.cpp \
+    Vector/src/VectorSparse.cpp
 
 HEADERS += \
         dialog.h \
     qpaintwidget.h \
-    headers/AMatrix.h \
-    headers/IMatrix.h \
-    headers/IVector.h \
-    headers/MatrixInitiator.h \
-    headers/MatrixNormal.h \
-    headers/MatrixSparse.h \
-    headers/MatrixStatistics.h \
-    headers/VectorNormal.h \
-    headers/VectorSparse.h \
-    headers/idrawer.h \
-    headers/idrawable.h \
-    headers/consoledrawer.h \
-    headers/guidrawer.h \
-    headers/adrawer.h \
-    headers/renumdecorator.h \
-    headers/iiterable.h \
-    headers/ivectorfactory.h \
-    headers/vectornormalfactory.h \
-    headers/vectorsparsefactory.h \
-    headers/horizontalmatrixgroup.h \
-    headers/verticalmatrixgroup.h \
-    headers/factories/IAbstractFactory.h \
-    headers/factories/matrixfactory.h
+    Drawer/include/adrawer.h \
+    Drawer/include/consoledrawer.h \
+    Drawer/include/guidrawer.h \
+    Drawer/include/idrawable.h \
+    Drawer/include/idrawer.h \
+    Factories/include/IAbstractFactory.h \
+    Factories/include/ivectorfactory.h \
+    Factories/include/matrixfactory.h \
+    Factories/include/vectornormalfactory.h \
+    Factories/include/vectorsparsefactory.h \
+    Matrix/include/AMatrix.h \
+    Matrix/include/horizontalmatrixgroup.h \
+    Matrix/include/iiterable.h \
+    Matrix/include/IMatrix.h \
+    Matrix/include/MatrixInitiator.h \
+    Matrix/include/MatrixNormal.h \
+    Matrix/include/MatrixSparse.h \
+    Matrix/include/MatrixStatistics.h \
+    Matrix/include/renumdecorator.h \
+    Matrix/include/verticalmatrixgroup.h \
+    Vector/include/IVector.h \
+    Vector/include/VectorNormal.h \
+    Vector/include/VectorSparse.h
 
 FORMS += \
         dialog.ui

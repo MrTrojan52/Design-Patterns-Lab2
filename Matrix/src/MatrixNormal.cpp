@@ -2,7 +2,7 @@
 // Created by trojan52 on 06.10.18.
 //
 
-#include "headers/MatrixNormal.h"
+#include "Matrix/include/MatrixNormal.h"
 
 void MatrixNormal::Draw() const {
     unsigned long rows = this->getRows();

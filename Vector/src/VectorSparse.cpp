@@ -2,7 +2,7 @@
 // Created by trojan52 on 06.10.18.
 //
 
-#include "headers/VectorSparse.h"
+#include "Vector/include/VectorSparse.h"
 
 
 unsigned long VectorSparse::getSize() const {

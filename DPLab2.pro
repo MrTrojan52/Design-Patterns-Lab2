@@ -44,7 +44,11 @@ SOURCES += \
     Matrix/src/renumdecorator.cpp \
     Matrix/src/verticalmatrixgroup.cpp \
     Vector/src/VectorNormal.cpp \
-    Vector/src/VectorSparse.cpp
+    Vector/src/VectorSparse.cpp \
+    Command/src/ACommand.cpp \
+    Command/src/commandmanager.cpp \
+    Command/src/matrixsetcommand.cpp \
+    Command/src/initappcommand.cpp
 
 HEADERS += \
         dialog.h \
@@ -71,7 +75,12 @@ HEADERS += \
     Matrix/include/verticalmatrixgroup.h \
     Vector/include/IVector.h \
     Vector/include/VectorNormal.h \
-    Vector/include/VectorSparse.h
+    Vector/include/VectorSparse.h \
+    Command/include/ICommand.h \
+    Command/include/acommand.h \
+    Command/include/commandmanager.h \
+    Command/include/initappcommand.h \
+    Command/include/matrixsetcommand.h
 
 FORMS += \
         dialog.ui

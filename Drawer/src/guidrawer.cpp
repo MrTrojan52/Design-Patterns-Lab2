@@ -15,7 +15,7 @@ void GuiDrawer::DrawBorder(unsigned long rows, unsigned long cols) {
 
 }
 void GuiDrawer::DrawItem(unsigned long row, unsigned long col, int val) const {
-     _painter->drawText(_RecW * col, (_RecH * row + _RecH * (row + 1)) / 2, QString::number(val));
+     _painter->drawText((_RecW * col + _RecW * (col + 1)) / 2, (_RecH * row + _RecH * (row + 1)) / 2, QString::number(val));
 }
 
 

@@ -10,6 +10,9 @@
 #include "Matrix/include/horizontalmatrixgroup.h"
 #include "Matrix/include/verticalmatrixgroup.h"
 #include "Factories/include/matrixfactory.h"
+#include "Command/include/commandmanager.h"
+#include "Command/include/matrixsetcommand.h"
+#include "Command/include/initappcommand.h"
 namespace Ui {
 class Dialog;
 }
@@ -36,8 +39,13 @@ private slots:
 
     void on_objMakeGroup_clicked();
 
+    void on_psbChange_clicked();
+
+    void on_psbUndo_clicked();
+
 private:
     bool eventFilter(QObject* watched, QEvent* event);
+    void redrawMatrix();
     Ui::Dialog *ui;
     std::shared_ptr<AMatrix> _matrix;
     ConsoleDrawer* _cDrawer;

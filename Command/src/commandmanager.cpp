@@ -14,14 +14,16 @@ CommandManager* CommandManager::getInstance() {
 
 
 void CommandManager::Registry(ICommand* command) {
-    if(lock)
+    if(lock) {
+        delete command;
         return;
-    command_list.push_back(command);
+    }
+    command_list.emplace_back(command);
 }
 
 void CommandManager::Undo()
 {
-    if(command_list.size()) {
+    if(command_list.size() > 1) {
         command_list.pop_back();
         lock = true;
         for(auto c : command_list)

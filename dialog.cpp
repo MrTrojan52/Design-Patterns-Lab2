@@ -15,9 +15,13 @@ Dialog::Dialog(QWidget *parent) :
     connect(ui->spnCols,SIGNAL(valueChanged(int)), this, SLOT(matrixSizeChanged(void)));
     ui->widget->installEventFilter(this);
     this->_cDrawer = new ConsoleDrawer;
+    this->_cDrawer->needBorder(ui->chkBorder->isChecked());
     this->_gDrawer = new GuiDrawer;
-    this->_matrix = nullptr;
+    this->_gDrawer->needBorder(ui->chkBorder->isChecked());
     matrix_factory = new MatrixFactory;
+    this->_matrix = matrix_factory->create_normal(5, 5, _cDrawer);
+    std::shared_ptr<ICommand> init_command(new InitAppCommand(_matrix));
+    init_command->Execute();
 }
 
 
@@ -113,11 +117,7 @@ void Dialog::on_psbRenum_clicked()
 
 
         this->_matrix = rd;
-        rd->setDrawer(_cDrawer);
-        this->_cDrawer->needBorder(ui->chkBorder->isChecked());
-        this->_matrix->Draw();
-        this->_gDrawer->needBorder(ui->chkBorder->isChecked());
-        ui->widget->update();
+        redrawMatrix();
     }
 }
 
@@ -146,7 +146,26 @@ void Dialog::on_objMakeGroup_clicked()
                                                             matrix_factory->create_and_fill_normal(1, 1, _cDrawer,ui->spnNonZero->value(), ui->spnMax->value())
 
                                                           });
-    this->_matrix->setDrawer(_cDrawer);
+    redrawMatrix();
+}
+
+void Dialog::on_psbChange_clicked()
+{
+    srand(static_cast<unsigned int>(time(nullptr)));
+    std::shared_ptr<ICommand> set_command(new MatrixSetCommand(this->_matrix, rand() % this->_matrix->getRows(), rand() % this->_matrix->getCols(), rand() % 100));
+    set_command->Execute();
+    redrawMatrix();
+}
+
+void Dialog::on_psbUndo_clicked()
+{
+    CommandManager::getInstance()->Undo();
+    redrawMatrix();
+}
+
+void Dialog::redrawMatrix() {
+    system("clear");
+    _matrix->setDrawer(_cDrawer);
     this->_cDrawer->needBorder(ui->chkBorder->isChecked());
     this->_matrix->Draw();
     this->_gDrawer->needBorder(ui->chkBorder->isChecked());

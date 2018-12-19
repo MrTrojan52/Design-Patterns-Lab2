@@ -5,7 +5,7 @@
 #include <list>
 class CommandManager {
 private:
-    std::list<ICommand*> command_list;
+    std::list<std::shared_ptr<ICommand>> command_list;
     bool lock = false;
     CommandManager() { }
     static std::unique_ptr<CommandManager> instance;
